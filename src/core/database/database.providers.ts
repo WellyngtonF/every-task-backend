@@ -8,14 +8,14 @@ export const databaseProviders = [
 		provide: SEQUELIZE,
 		useFactory: async () => {
 			let config
-			switch (process.env.NODE_ENV) {
-				case DEVELOPMENT:
+			switch (process.env.NODE_ENV.trim()) {
+				case 'DEVELOPMENT':
 					config = databaseConfig.development
 					break
-				case TEST:
+				case 'TEST':
 					config = databaseConfig.test
 					break
-				case PRODUCTION:
+				case 'PRODUCTION':
 					config = databaseConfig.production
 					break
 				default:
