@@ -9,6 +9,7 @@ import {
 	NotFoundException,
 	UseGuards,
 	Request,
+	UnauthorizedException,
 } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
 import { TasksService } from './tasks.service'
@@ -19,14 +20,28 @@ import { TaskDto } from './dto/task.dto'
 export class TasksController {
 	constructor(private readonly taskService: TasksService) {}
 
+	@UseGuards(AuthGuard('jwt'))
 	@Get()
-	async findAll() {
+	async findAll(@Request() req) {
+		// Just admin users can see all tasks
+		if (!req.user.admin) {
+			throw new UnauthorizedException(
+				'You are not authorized to perform the operation',
+			)
+		}
 		// get all tasks from db
 		return await this.taskService.findAll()
 	}
 
+	@UseGuards(AuthGuard('jwt'))
 	@Get('open')
-	async findOpenTasks() {
+	async findOpenTasks(@Request() req) {
+		// Just admin users can see all open tasks
+		if (!req.user.admin) {
+			throw new UnauthorizedException(
+				'You are not authorized to perform the operation',
+			)
+		}
 		// get all open tasks from db
 		return await this.taskService.findOpenTasks()
 	}
