@@ -22,4 +22,8 @@ export class UsersService {
 	async findOneById(id: number): Promise<User> {
 		return await this.userRepository.findOne({ where: { id } })
 	}
+
+	async findAllUsers(): Promise<User[]> {
+		return await this.userRepository.findAll()
+	}
 }

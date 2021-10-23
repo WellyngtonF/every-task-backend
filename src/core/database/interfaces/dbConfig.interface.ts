@@ -7,6 +7,13 @@ export interface IDatabaseConfigAttributes {
 	dialect?: string
 	urlDatabase?: string
 	logging?: boolean
+	timezone?: string
+	dialectOptions?: {
+		useUTC?: boolean | string
+		dateStrings?: boolean
+		typeCast?: any
+		timezone?: any
+	}
 }
 
 export interface IDatabaseConfig {

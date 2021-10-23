@@ -11,7 +11,7 @@ export class AuthController {
 	@UseGuards(AuthGuard('local'))
 	@Post('login')
 	async login(@Request() req) {
-		return await this.authService.login(req.body.username)
+		return await this.authService.login(req.body.username) // username as email
 	}
 
 	@UseGuards(DoesUserExist)
