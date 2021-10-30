@@ -1,4 +1,5 @@
 import { Injectable, Inject, Body } from '@nestjs/common'
+import * as bcrypt from 'bcrypt'
 import { User } from './user.entity'
 import { UserDto } from './dto/user.dto'
 import { USER_REPOSITORY } from '../../core/constants'
@@ -25,5 +26,21 @@ export class UsersService {
 
 	async findAllUsers(): Promise<User[]> {
 		return await this.userRepository.findAll()
+	}
+
+	async update(id, data) {
+		const pass = await this.hashPassword(data.password)
+		const [numberOfAffectedRows, [updatedUser]] =
+			await this.userRepository.update(
+				{ ...data, password: pass },
+				{ where: { id }, returning: true },
+			)
+
+		return { numberOfAffectedRows, updatedUser }
+	}
+
+	public async hashPassword(password) {
+		const hash = await bcrypt.hash(password, 10)
+		return hash
 	}
 }
