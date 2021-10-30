@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize-typescript'
-import { User } from 'src/modules/users/user.entity'
-import { Task } from 'src/modules/tasks/task.entity'
+import { User } from '../../modules/users/user.entity'
+import { Task } from '../../modules/tasks/task.entity'
 import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../constants'
 import { databaseConfig } from './database.config'
 

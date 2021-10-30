@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@nestjs/common'
 import { Task } from './task.entity'
 import { TaskDto } from './dto/task.dto'
 import { User } from '../users/user.entity'
-import { TASK_REPOSITORY } from 'src/core/constants'
+import { TASK_REPOSITORY } from '../../core/constants'
 
 @Injectable()
 export class TasksService {

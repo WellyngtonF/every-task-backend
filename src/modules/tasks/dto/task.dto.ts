@@ -7,9 +7,9 @@ export class TaskDto {
 
 	@IsOptional()
 	@IsDate()
-	readonly dateEstimated: Date
+	readonly dateEstimated?: Date
 
 	@IsOptional()
 	@IsDate()
-	readonly dateClosed: Date
+	readonly dateClosed?: Date
 }
