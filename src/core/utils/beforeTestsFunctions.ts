@@ -29,9 +29,9 @@ const getNoAdminToken = async (app) => {
 }
 
 const createUserIFNotExist = async (app, user: UserDto) => {
-	const resp = await request(app.getHttpServer())
-		.get('/users/name')
-		.send({ username: user.name })
+	const resp = await request(app.getHttpServer()).get(
+		`/users/name/${user.name}`,
+	)
 	if (resp.statusCode === 404) {
 		await request(app.getHttpServer()).post('/auth/signup').send(user)
 	}
@@ -47,7 +47,6 @@ const getToken = async (app, user: UserDto) => {
 }
 
 export const getTokenUser = async (app, roleUser: enumUser) => {
-	//console.log(roleUser)
 	switch (roleUser) {
 		case 'default':
 			return getDefaultToken(app)

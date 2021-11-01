@@ -6,7 +6,10 @@ import {
 } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
 
-export class UserDto {
+export class FindUserDto {
+	@ApiProperty({ example: 1 })
+	readonly id: number
+
 	@ApiProperty({ example: 'Wellyngton' })
 	@IsNotEmpty()
 	readonly name: string
@@ -17,7 +20,7 @@ export class UserDto {
 	readonly email: string
 
 	@ApiProperty({
-		example: '123456',
+		example: '$2b$10$9YdgjPvCelJpNXgC5jzGMuNSyJeuiMm/hzsJSP/yz/W1l08B3X0Xi',
 	})
 	@IsNotEmpty()
 	@MinLength(6)
@@ -27,4 +30,10 @@ export class UserDto {
 	@IsNotEmpty()
 	@IsBooleanString()
 	readonly admin: boolean
+
+	@ApiProperty({ example: '2021-10-18T19:35:39.502Z' })
+	readonly createdAt: Date
+
+	@ApiProperty({ example: '2021-10-18T19:35:39.502Z' })
+	readonly updatedAt: Date
 }

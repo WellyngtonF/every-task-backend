@@ -30,7 +30,6 @@ describe('UsersController', () => {
 	})
 
 	beforeEach(async () => {
-		const mockGuard: CanActivate = { canActivate: jest.fn(() => true) }
 		const module: TestingModule = await Test.createTestingModule({
 			imports: [AppModule],
 		}).compile()
@@ -67,8 +66,7 @@ describe('UsersController', () => {
 
 	it('return user by email', async () => {
 		const resp = await request(app.getHttpServer())
-			.get('/users/email')
-			.send({ email: defaultUser.email })
+			.get(`/users/email/${defaultUser.email}`)
 			.auth(token, { type: 'bearer' })
 		expect(resp.status).toEqual(200)
 		expect(resp.body.name).toEqual(defaultUser.name)
@@ -76,8 +74,7 @@ describe('UsersController', () => {
 
 	it('return user by name', async () => {
 		const resp = await request(app.getHttpServer())
-			.get('/users/name')
-			.send({ username: defaultUser.name })
+			.get(`/users/name/${defaultUser.name}`)
 			.auth(token, { type: 'bearer' })
 		expect(resp.status).toEqual(200)
 		expect(resp.body.name).toEqual(defaultUser.name)
