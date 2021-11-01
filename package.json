@@ -28,6 +28,7 @@
     "@nestjs/passport": "^8.0.1",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/sequelize": "^8.0.0",
+    "@nestjs/swagger": "^5.1.4",
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
@@ -42,6 +43,7 @@
     "rxjs": "^7.2.0",
     "sequelize": "^6.7.0",
     "sequelize-typescript": "^2.1.1",
+    "swagger-ui-express": "^4.1.6",
     "typeorm": "^0.2.38"
   },
   "devDependencies": {
@@ -85,7 +87,7 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
-	"globalSetup": "./src/core/utils/index.ts",
+    "globalSetup": "./src/core/utils/index.ts",
     "roots": [
       "<rootDir>/src/modules"
     ],

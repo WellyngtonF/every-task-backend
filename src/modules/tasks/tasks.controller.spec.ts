@@ -75,7 +75,7 @@ describe('TasksController', () => {
 		await app.close()
 	})
 
-	it('create token', async () => {
+	it('create task', async () => {
 		const resp = await createTask(app, arrayTask[0], token)
 		defaultTask = resp.body
 		expect(resp.status).toEqual(201)
